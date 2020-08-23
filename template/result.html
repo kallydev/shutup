@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <title>My page</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+</head>
+<body class="d-flex flex-column h-100">
+<main role="main" class="flex-shrink-0">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>Shut Up</h2>
+            <p class="lead">
+                用于规避基于关键词的文本内容审查
+            </p>
+        </div>
+        <div class="col-12">
+            <button id="button_clipboard" class="btn btn-primary btn-lg btn-block" data-clipboard-target="#text_result">复制</button>
+            <div id="alert_success" class="alert alert-success mt-4" role="alert" style="display: none;">
+                复制成功
+            </div>
+            <div id="alert_error" class="alert alert-danger mt-4" role="alert" style="display: none;">
+                复制失败
+            </div>
+            <hr class="mb-4">
+            <p id="text_result">{{ result | e }}</p>
+        </div>
+    </div>
+</main>
+<footer class="footer mt-auto py-3 text-muted text-center text-small">
+    <div class="container">
+        <p class="mb-1">Developed with <span style="color: #F44336; font-size: 20px;">♥</span> by KallyDev</p>
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <a href="https://github.com/kallydev/shutup">GitHub</a>
+            </li>
+            <li class="list-inline-item">
+                <a href="https://github.com/kallydev/shutup/blob/master/LICENSE">License</a>
+            </li>
+            <li class="list-inline-item">
+                <a href="https://github.com/kallydev/shutup/blob/master/README.md">Help</a>
+            </li>
+        </ul>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+<script>
+    let clipboard = new ClipboardJS('#button_clipboard');
+    let button_clipboard = document.getElementById('button_clipboard');
+    let alert_success = document.getElementById('alert_success');
+    let alert_error = document.getElementById('alert_error');
+
+    clipboard.on('success', function (e) {
+        if (alert_error.style.display !== 'none') {
+            alert_error.style.display = 'none';
+        }
+        alert_success.style.display = 'block';
+        e.clearSelection();
+    });
+
+    clipboard.on('error', function (e) {
+        if (alert_success.style.display !== 'none') {
+            alert_success.style.display = 'none';
+        }
+        alert_error.style.display = 'block';
+        e.clearSelection();
+    });
+</script>
+</body>
+</html>
