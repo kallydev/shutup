@@ -7,6 +7,10 @@
 
 Used to avoid keyword-based text content review.
 
+## Screenshot
+
+![Screenshot](screenshot/screenshot.png)
+
 ## How to use
 
 ### 1. Install Docker
